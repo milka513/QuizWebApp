@@ -5,12 +5,47 @@ const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const expressSession = require('express-session');
 const mongoose=require('mongoose');
+const mongodb=require('mongodb').MongoClient;
 const cors= require('cors');
+const fs=require('fs')
+const excel=require('exceljs')
 require('dotenv').config()
 
 const database_config=require('./config/database')
 const app=express();
 
+if (process.env.DEBUG_QUIZ) {
+    mongodb.connect(
+        process.env.DATABASE_URL,
+        {useNewUrlParser:true, useUnifiedTopology:true},
+        (err, client)=>{
+            if (err) throw err;
+
+            client
+            .db('test')
+            .collection('questions')
+            .find({}, {title: 1, answers: 1, correctNum: 1, _v:0})
+            .toArray((err, data)=>{
+                if (err) throw err;
+                console.log(data);
+                let workbook=new excel.Workbook();
+                let worksheet=workbook.addWorksheet('Questions');
+                worksheet.columns=[
+                    {header: 'title', key: 'title'},
+                    {header: 'answers', key: 'answers'},
+                    {header: 'correctNum', key: 'correctNum'},
+                ];
+                worksheet.addRows(data);
+                workbook.xlsx.writeFile('questions.xls')
+                .then(function(){
+                    console.log('file saved!');
+                })
+                client.close();
+            })
+        }
+    )
+    return;
+}
 
 require('./models/user.model');
 require('./models/question.model');
@@ -40,13 +75,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-const authenticate=(req, res, next) => {
-    if(!req.isAuthenticated()) {
-        res.status(403).send('You are not allowed');
-    } else {
-        next();
-    }
-}
+
 
 passport.serializeUser((user, done) => {
     if(!user) return done("Missing credentials", undefined);
