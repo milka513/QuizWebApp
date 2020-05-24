@@ -9,6 +9,9 @@ const userSchema=new mongoose.Schema({
         default: 'user',
         enum: ['user', 'admin']
     },
+    score: {
+        type: Number
+    },
     accessToken: {
         type: String
     }
