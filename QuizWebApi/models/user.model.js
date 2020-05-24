@@ -4,7 +4,14 @@ const bcrypt=require('bcrypt');
 const userSchema=new mongoose.Schema({
     username: {type: String, unique: true,required:true},
     password: {type: String, required: [true, 'Password is missing']},
-    role:{type:String, default: 'user'}
+    role:{
+        type:String, 
+        default: 'user',
+        enum: ['user', 'admin']
+    },
+    accessToken: {
+        type: String
+    }
 });
 
 userSchema.pre('save', function(next){
@@ -14,7 +21,6 @@ userSchema.pre('save', function(next){
         bcrypt.genSalt(10, function(error, salt){
             if (error) return next('Error occurs during generating bcrypt');
             bcrypt.hash(user.password, salt, function(error, hash){
-                console.log(hash+' '+salt+' '+user.password)
                 if (error) return next('Error occurs during hashing password');
                 user.password=hash;
                 return next();

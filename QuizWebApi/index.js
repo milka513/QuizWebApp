@@ -13,6 +13,7 @@ const app=express();
 
 
 require('./models/user.model');
+require('./models/question.model');
 
 const user=mongoose.model('user');
 
@@ -79,6 +80,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/server/user', require('./routes/user.route'));
+app.use('/server/question', require('./routes/question.route'));
 
 app.listen(process.env.PORT, ()=> {
     console.log("The API is running....");
