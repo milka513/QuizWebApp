@@ -7,6 +7,7 @@ exports.roles=(function() {
     .deleteAny('question')
     .readAny('question')
     .readAny('scores')
+    .updateAny('scores')
 
     ac.grant('user')
     .readAny('scores')
