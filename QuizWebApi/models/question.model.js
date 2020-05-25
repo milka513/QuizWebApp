@@ -10,7 +10,7 @@ const QuestionSchema=new mongoose.Schema({
         }],
         validate: [arrayLimit, "{PATH} exceed the limit of 4"]
     },
-    correctNum: {type: Number, min: 0, max: 3}
+    correctNum: {type: Number, min: 1, max: 4}
 });
 
 function arrayLimit(val) {
