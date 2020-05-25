@@ -117,3 +117,16 @@ exports.listSpecNumberOfQuestions=async (req, res, next)=>{
     }
 
 }
+
+exports.deleteQuestion=async (req, res, next)=>{
+   try{
+        const questionId=req.params.questionId;
+        await questionModel.findByIdAndDelete(questionId);
+        res.status(200).json({
+            data: null,
+            message: "Question has been deleted"
+        });
+    } catch(error) {
+        next(error);
+    }
+}

@@ -76,3 +76,17 @@ exports.updateScore = async(req, res, next)=>{
        next(error); 
     }
 }
+
+exports.deleteUser=async(req, res, next)=>{
+    try {
+        const userId=req.params.userId;
+        await userModel.findByIdAndDelete(userId);
+        res.status(200).json({
+            data: null,
+            message: "User has been deleted"
+        });
+
+    } catch(error) {
+        next(error);
+    }
+}
