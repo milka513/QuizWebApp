@@ -28,6 +28,7 @@ export class QuizService {
       })
     };
 
+    console.log("userid putnal", localStorage.getItem('userid'));
     return this.http.put('http://localhost:3000/server/user/updatescore',{score: 10, userId: localStorage.getItem('userid')}, httpOptions)
   }
 }
