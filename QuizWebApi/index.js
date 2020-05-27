@@ -69,7 +69,7 @@ mongoose.connection.on('connected', ()=>{
 
 
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: 'http://localhost:4200'}));
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
