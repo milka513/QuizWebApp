@@ -8,12 +8,18 @@ import { LoginComponent } from './login/login.component';
 
 import {HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { TopScorersComponent } from './top-scorers/top-scorers.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    RegistrationComponent,
+    TopScorersComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,

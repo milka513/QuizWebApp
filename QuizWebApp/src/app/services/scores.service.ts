@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class ScoresService {
 
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<any> {
+  getScores(): Observable<any> {
     const httpOptions = {
       withCredentials: true,
       headers: new HttpHeaders({
@@ -17,7 +17,6 @@ export class LoginService {
       })
     };
 
-    return this.http.post('http://localhost:3000/server/user/login', {username: username, password:password}, httpOptions)
+    return this.http.get<any>('http://localhost:3000/server/user/listallscores', httpOptions)
   }
-
 }

@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class RegistrationService {
 
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<any> {
+  registration(username: string, password: string): Observable<any> {
     const httpOptions = {
       withCredentials: true,
       headers: new HttpHeaders({
@@ -17,7 +17,6 @@ export class LoginService {
       })
     };
 
-    return this.http.post('http://localhost:3000/server/user/login', {username: username, password:password}, httpOptions)
+    return this.http.post('http://localhost:3000/server/user/register', {username: username, password:password, role: 'user'}, httpOptions)
   }
-
 }

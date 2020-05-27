@@ -1,0 +1,14 @@
+
+<h1>Regisztráció</h1>
+
+<p>Felhasználónév:</p>
+<input type="text" [(ngModel)]="username">
+<p>Jelszó:</p>
+<input type="password" [(ngModel)]="password">
+<p>Jelszó még egyszer:</p>
+<input type="password" [(ngModel)]="password2">
+<div>
+    <button (click)="registration()">Regisztráció</button>
+</div>
+
+<button (click)="navigateBack()">Vissza</button>
