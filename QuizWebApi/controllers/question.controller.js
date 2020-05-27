@@ -100,7 +100,7 @@ function getRandomSubarray(arr, size) {
 exports.listSpecNumberOfQuestions=async (req, res, next)=>{
     try {
         const number=req.body.num;
-        let questionArray=[];
+        let questionArray=await [];
         await questionModel.find({}, function(err, arr){
             questionArray=arr;
             console.log(arr);
