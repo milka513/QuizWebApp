@@ -21,4 +21,8 @@ export class DashboardComponent implements OnInit {
     this.Router.navigate(['/scores']);
   }
 
+  solveQuiz() {
+    this.Router.navigate(['/quiz']);
+  }
+
 }

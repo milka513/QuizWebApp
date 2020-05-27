@@ -27,6 +27,22 @@ export class LoginComponent implements OnInit {
     }, error => {
       console.log('error', error);     
     })
+
+    this.loginService.setUserId().subscribe(data => {
+      console.log('data_scores', data);
+
+      for(let prop of data.data) {
+        if(prop.username == this.username) {
+          console.log('username:', this.username);
+          console.log('userid:', prop._id);
+
+          localStorage.setItem("userid", prop._id);
+        }
+      }
+
+    }, error => {
+      console.log('error', error)
+    })
   }
 
   clickRegistration() {
