@@ -18,4 +18,6 @@ router.route('/listallscores').get(quesitonController.authenticate,quesitonContr
 router.route('/updatescore').put(quesitonController.authenticate, userController.updateScore);
 
 router.route('/deleteuser/:userId').delete(quesitonController.authenticate, quesitonController.grantAccess('updateAny', 'scores'), userController.deleteUser);
+
+router.route('/profile').get(quesitonController.authenticate, userController.getProfile);
 module.exports = router;

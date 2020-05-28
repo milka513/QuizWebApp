@@ -91,3 +91,10 @@ exports.deleteUser=async(req, res, next)=>{
         next(error);
     }
 }
+
+exports.getProfile=async(req, res, next)=>{
+    var user=req.user;
+    res.status(200).json({
+        data: user
+    });
+}
