@@ -1,1 +1,15 @@
-<p>quiz works!</p>
+<h1>Kvíz</h1>
+
+<p>{{questionString}}</p>
+
+<div>
+    <button *ngFor="let answer of shuffledAnswers" (click)="updateScore(answer)">
+        {{answer}}
+    </button>
+</div>
+
+
+<div>
+    <button (click)='navigateBack()'>Befejezés</button>
+</div>
+

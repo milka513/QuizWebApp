@@ -15,8 +15,12 @@ export class LoginComponent implements OnInit {
 
   constructor(private route:ActivatedRoute, private router:Router, private loginService: LoginService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     localStorage.clear();
+    
+    this.loginService.logout().subscribe(data=>{
+      console.log(data);
+    });
   }
 
   clickLogin() {
@@ -26,6 +30,22 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/dashboard']);
     }, error => {
       console.log('error', error);     
+    })
+
+    this.loginService.setUserId().subscribe(data => {
+      console.log('data_scores', data);
+
+      for(let prop of data.data) {
+        if(prop.username == this.username) {
+          console.log('username:', this.username);
+          console.log('userid:', prop._id);
+
+          localStorage.setItem('userid', prop._id);
+        }
+      }
+
+    }, error => {
+      console.log('error', error)
     })
   }
 

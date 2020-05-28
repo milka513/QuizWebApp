@@ -45,7 +45,8 @@ exports.register=function(req, res) {
 }
 
 exports.logout=function(req, res) {
-    console.log(req.session.passport.user);
+  //  console.log(req.session.passport.user);
+    
     if(req.isAuthenticated()) {
         req.logout();
         res.status(200).send({data: "log out is successful"});
