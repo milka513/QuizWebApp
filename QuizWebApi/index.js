@@ -67,7 +67,7 @@ mongoose.connection.on('connected', ()=>{
     console.log("The connection to the database was successful");
 })
 
-/*var whitelist = ['http://localhost:4200/login', 'http://localhost:4200/main', 'http://localhost:4200'] 
+var whitelist = ['http://localhost:4200/login', 'http://localhost:4200/main', 'http://localhost:4200' ]
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -78,8 +78,7 @@ var corsOptions = {
   },
   credentials: true
 }
-app.use(cors(corsOptions));*/
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));

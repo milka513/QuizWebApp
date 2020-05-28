@@ -55,7 +55,7 @@ exports.logout=function(req, res) {
 }
 
 exports.listAllUserWithScore=async(req, res, next)=> {
-    const users=await userModel.find({role: "user"} ,{_id: 1, username: 1, score:1});
+    const users=await userModel.find({role: "user"} ,{_id: 1, username: 1, score:1, role: 1});
     res.status(200).json({
         data: users
     });
