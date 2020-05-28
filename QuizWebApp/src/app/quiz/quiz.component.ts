@@ -45,10 +45,8 @@ export class QuizComponent implements OnInit {
         console.log('error', error);     
       })
     }  
-
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/quiz']);
-    }); 
+    
+    this.router.navigate(['/result']);
   }
 
   shuffle(array: Array<any>) {

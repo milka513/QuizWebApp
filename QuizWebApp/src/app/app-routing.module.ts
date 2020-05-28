@@ -9,6 +9,7 @@ import { TopScorersComponent } from './top-scorers/top-scorers.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { AddQuestionComponent } from './add-question/add-question.component';
 import { ViewQuestionsComponent } from './view-questions/view-questions.component';
+import { ResultComponentComponent } from './result-component/result-component.component';
 
 const routes: Routes = [
  {path: '', component: LoginComponent},
@@ -18,7 +19,7 @@ const routes: Routes = [
  {path: 'scores', component: TopScorersComponent},
  {path: 'quiz', component: QuizComponent},
  {path: 'addquestion', component: AddQuestionComponent},
- {path: 'viewquestions', component: ViewQuestionsComponent}
+ {path: 'viewquestions', component: ViewQuestionsComponent} 
 ];
 
 @NgModule({
