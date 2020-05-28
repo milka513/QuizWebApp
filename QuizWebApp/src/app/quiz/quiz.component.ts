@@ -4,6 +4,8 @@ import { QuizService } from '../services/quiz.service';
 import { HttpHeaders } from '@angular/common/http';
 import { Variable } from '@angular/compiler/src/render3/r3_ast';
 
+
+
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
@@ -25,25 +27,27 @@ export class QuizComponent implements OnInit {
   ngOnInit(): void {
     this.getQuestions(this.quizService);
     this.actualScore = parseInt(localStorage.getItem('score'));
+    this.quizService.updateScore().subscribe(data => {
+      console.log('data', data);
+
+      let sc = parseInt(localStorage.getItem('score'));
+      console.log('former score:', sc);
+
+      sc += 10;
+      localStorage.removeItem('score');
+
+      localStorage.setItem('score', sc.toString());
+
+      this.actualScore=parseInt(localStorage.getItem('score'));
+    }, error => {
+      console.log('error', error);     
+    })
   }
 
   //akkor ha a user jol valaszolt akkor a kerdesert kap 10 pontot
   updateScore(ans: string) {
     if(ans == this.correctAnswer) {
-      this.quizService.updateScore().subscribe(data => {
-        console.log('data', data);
-
-        let sc = parseInt(localStorage.getItem('score'));
-        console.log('former score:', sc);
-
-        sc += 10;
-        localStorage.removeItem('score');
-
-        localStorage.setItem('score', sc.toString());
-
-      }, error => {
-        console.log('error', error);     
-      })
+     this.quizService.updateScore();
     }  
     
     this.router.navigate(['/result']);
