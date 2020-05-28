@@ -103,7 +103,7 @@ exports.listSpecNumberOfQuestions=async (req, res, next)=>{
         let questionArray=await [];
         await questionModel.find({}, function(err, arr){
             questionArray=arr;
-            console.log(arr);
+            console.log("arr.size: "+arr.size);
         });
         if (number>questionArray.size){
             return next(new Error('Too big size for random list.'));
