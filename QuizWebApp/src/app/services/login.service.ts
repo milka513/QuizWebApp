@@ -32,7 +32,7 @@ export class LoginService {
 
   }
 
-  setUserId():Observable<any> {
+  getUserProfile():Observable<any> {
     const httpOptions = {
       withCredentials: true,
       headers: new HttpHeaders({
@@ -40,7 +40,7 @@ export class LoginService {
       })
     };
 
-    return this.http.get<any>('http://localhost:3000/server/user/listallscores', httpOptions)
+    return this.http.get<any>('http://localhost:3000/server/user/profile', httpOptions)
   }
 
 }

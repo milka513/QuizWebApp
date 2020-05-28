@@ -18,8 +18,7 @@ export class ViewQuestionsComponent implements OnInit {
   ngOnInit(): void {
     this.getQuestions();
   }
-
-  //5ec9e7c54d42c637f4dba8bf
+  
   deleteQuestion(id:string) {
     this.quizService.deleteQuestion(id).subscribe(data => {
       console.log('data', data);      

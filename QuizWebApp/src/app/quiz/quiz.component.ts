@@ -20,10 +20,11 @@ export class QuizComponent implements OnInit {
   shuffledAnswers = [];
   actualScore : number;
 
-  constructor(private router: Router, private quizService: QuizService) { }
+  constructor(private router: Router, private quizService: QuizService) {  }
 
   ngOnInit(): void {
     this.getQuestions(this.quizService);
+    this.actualScore = parseInt(localStorage.getItem('score'));
   }
 
   //akkor ha a user jol valaszolt akkor a kerdesert kap 10 pontot
@@ -31,6 +32,15 @@ export class QuizComponent implements OnInit {
     if(ans == this.correctAnswer) {
       this.quizService.updateScore().subscribe(data => {
         console.log('data', data);
+
+        let sc = parseInt(localStorage.getItem('score'));
+        console.log('former score:', sc);
+
+        sc += 10;
+        localStorage.removeItem('score');
+
+        localStorage.setItem('score', sc.toString());
+
       }, error => {
         console.log('error', error);     
       })
@@ -39,28 +49,6 @@ export class QuizComponent implements OnInit {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/quiz']);
     }); 
-  }
-
-  getScore() : number {
-    let score = 0;
-
-    this.quizService.getScore().subscribe(data => {
-      let rsp = data.data;
-      let kys = Object.keys(rsp);
-      
-      let userInfo = [];
-
-      for(let prop of kys) {
-        if(rsp[prop].username == localStorage.getItem('username')) {
-          score = rsp[prop].score;
-          break;
-        }
-      }
-    }, error => {
-      console.log(error);
-    })
-
-    return score;
   }
 
   shuffle(array: Array<any>) {
@@ -97,7 +85,6 @@ export class QuizComponent implements OnInit {
       this.shuffledAnswers = this.shuffle(this.questions[0].answers);
       console.log('shuffle:', this.shuffledAnswers);
 
-      this.actualScore = this.getScore();
     }, error => {
       console.log('error', error);     
     })

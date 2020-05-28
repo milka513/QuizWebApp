@@ -28,25 +28,30 @@ export class LoginComponent implements OnInit {
       console.log('data', data);
       localStorage.setItem('username', this.username);
       this.router.navigate(['/dashboard']);
+
+      this.loginService.getUserProfile().subscribe(data => {
+        console.log('user_profile', data);
+  
+        let kys = Object.keys(data.data);
+
+        console.log('username:', data.data['username']);
+        console.log('userid:', data.data['_id']);
+        console.log('role', data.data['role']);
+        console.log('score', data.data['score']);
+
+        localStorage.setItem('userid', data.data['_id']);
+        localStorage.setItem('score', data.data['score']);
+        localStorage.setItem('role', data.data['role']);          
+  
+      }, error => {
+        console.log('error', error)
+      })
+
     }, error => {
       console.log('error', error);     
     })
 
-    this.loginService.setUserId().subscribe(data => {
-      console.log('data_scores', data);
-
-      for(let prop of data.data) {
-        if(prop.username == this.username) {
-          console.log('username:', this.username);
-          console.log('userid:', prop._id);
-
-          localStorage.setItem('userid', prop._id);
-        }
-      }
-
-    }, error => {
-      console.log('error', error)
-    })
+   
   }
 
   clickRegistration() {
