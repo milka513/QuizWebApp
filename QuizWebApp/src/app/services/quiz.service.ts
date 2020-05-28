@@ -50,7 +50,7 @@ export class QuizService {
       })
     };
 
-    return this.http.post('http://localhost:3000/server/question/listspecnumquestions',{num:1}, httpOptions)
+    return this.http.post('http://localhost:3000/server/question/listspecnumquestions',{num:5}, httpOptions)
   }
 
   addQuestion(title: string, answers: Array<string>, correctNum: number) : Observable<any> {
@@ -66,7 +66,7 @@ export class QuizService {
     return this.http.post('http://localhost:3000/server/question/addquestion', {title: title, answers: answers, correctNum: correctNum}, httpOptions)
   }
 
-  updateScore(): Observable<any> {
+  updateScore(pointsToBeAdded: number): Observable<any> {
     const httpOptions = {
       withCredentials: true,
       headers: new HttpHeaders({
@@ -75,6 +75,6 @@ export class QuizService {
     };
 
     console.log("userid putnal", localStorage.getItem('userid'));
-    return this.http.put('http://localhost:3000/server/user/updatescore',{score: 10, userId: localStorage.getItem('userid')}, httpOptions)
+    return this.http.put('http://localhost:3000/server/user/updatescore',{score: pointsToBeAdded, userId: localStorage.getItem('userid')}, httpOptions)
   }
 }

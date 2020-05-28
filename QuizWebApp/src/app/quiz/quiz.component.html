@@ -1,17 +1,16 @@
 <h1>Kvíz</h1>
 
-<h5>A pontszámod: {{actualScore}}</h5>
+<h5>A jelenlegi pontszámod: {{actualScore}}</h5>
 
-<p>{{questionString}}</p>
-
-<div>
-    <button *ngFor="let answer of shuffledAnswers" (click)="updateScore(answer)">
-        {{answer}}
-    </button>
+<div *ngFor="let index of indexes">
+    <p>{{questions[index].title}}</p>
+    <div *ngFor="let answer of shuffledAnswers[index]">
+        <input type="radio" name="answer{{index}}" value="{{answer}}" (change)="radioEventHandler($event, index)">
+        <i>{{answer}}</i>
+    </div>
 </div>
 
-
 <div>
-    <button (click)='navigateBack()'>Befejezés</button>
+    <button (click)='navigateToResult()'>Befejezés</button>
 </div>
 

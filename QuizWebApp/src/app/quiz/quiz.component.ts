@@ -16,26 +16,32 @@ export class QuizComponent implements OnInit {
   response = [];
   keys = [];
   questions = [];  
+  indexes = [];
     
-  questionString : string;
-  correctAnswer :string;
+  questionsString = [];
+  correctAnswers = [];
   shuffledAnswers = [];
   actualScore : number;
+
+  givenAnswers : any = [];
 
   constructor(private router: Router, private quizService: QuizService) {  }
 
   ngOnInit(): void {
     this.getQuestions(this.quizService);
     this.actualScore = parseInt(localStorage.getItem('score'));
-    this.quizService.updateScore().subscribe(data => {
+  }
+
+  //akkor ha a user jol valaszolt akkor a kerdesert kap 10 pontot
+  updateScore(pointsToBeAdded: number) {
+    this.quizService.updateScore(pointsToBeAdded).subscribe(data => {
       console.log('data', data);
 
       let sc = parseInt(localStorage.getItem('score'));
       console.log('former score:', sc);
 
-      sc += 10;
+      sc += pointsToBeAdded;
       localStorage.removeItem('score');
-
       localStorage.setItem('score', sc.toString());
 
       this.actualScore=parseInt(localStorage.getItem('score'));
@@ -44,26 +50,13 @@ export class QuizComponent implements OnInit {
     })
   }
 
-  //akkor ha a user jol valaszolt akkor a kerdesert kap 10 pontot
-  updateScore(ans: string) {
-    if(ans == this.correctAnswer) {
-     this.quizService.updateScore();
-    }  
-    
-    this.router.navigate(['/result']);
-  }
-
   shuffle(array: Array<any>) {
     var currentIndex = array.length, temporaryValue, randomIndex;
-  
-    // While there remain elements to shuffle...
+      
     while (0 !== currentIndex) {
-  
-      // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
   
-      // And swap it with the current element.
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
@@ -82,18 +75,36 @@ export class QuizComponent implements OnInit {
         this.questions.push(this.response[prop]);
       }
 
-      this.questionString = this.questions[0].title;
-      this.correctAnswer = this.questions[0].answers[this.questions[0].correctNum - 1];
-      this.shuffledAnswers = this.shuffle(this.questions[0].answers);
-      console.log('shuffle:', this.shuffledAnswers);
+      this.indexes = Object.keys(this.questions);
+
+      for(let index of this.indexes) {
+        this.correctAnswers.push(this.questions[index].answers[this.questions[index].correctNum - 1]);
+        this.shuffledAnswers.push(this.shuffle(this.questions[index].answers));
+      }      
 
     }, error => {
       console.log('error', error);     
     })
   }
 
-  navigateBack() {
-    this.router.navigate(['/dashboard']);
+  radioEventHandler(event: any, index:number) {
+    this.givenAnswers[index] = event.target.value;
+  }
+
+  navigateToResult() {
+    console.log('valaszok', this.givenAnswers);
+
+    let points = 0;
+
+    for(let index of this.indexes) {
+      if(this.givenAnswers[index] == this.correctAnswers[index]) {
+        points += 10;
+      }
+    }
+
+    this.updateScore(points);
+    
+    this.router.navigate(['/result', {pts: points, corrects: this.correctAnswers}]);
   }
 
 }

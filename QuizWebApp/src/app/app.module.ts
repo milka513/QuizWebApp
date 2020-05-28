@@ -25,7 +25,7 @@ import { ResultComponentComponent } from './result-component/result-component.co
     QuizComponent,
     AddQuestionComponent,
     ViewQuestionsComponent,
-    ResultComponentComponent
+    ResultComponentComponent    
   ],
   imports: [
     BrowserModule,

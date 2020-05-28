@@ -19,7 +19,8 @@ const routes: Routes = [
  {path: 'scores', component: TopScorersComponent},
  {path: 'quiz', component: QuizComponent},
  {path: 'addquestion', component: AddQuestionComponent},
- {path: 'viewquestions', component: ViewQuestionsComponent} 
+ {path: 'viewquestions', component: ViewQuestionsComponent},
+ {path: 'result', component: ResultComponentComponent}
 ];
 
 @NgModule({

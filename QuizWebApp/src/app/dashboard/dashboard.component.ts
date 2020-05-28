@@ -9,9 +9,17 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
+  isAdmin: boolean;
+
   constructor(private Router: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('role') == 'admin') {
+      this.isAdmin = true;
+    } else {
+      this.isAdmin = false;
+    }
+    
   }
 
   viewQuestions() {

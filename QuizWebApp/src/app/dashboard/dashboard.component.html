@@ -1,20 +1,31 @@
 <h1>Kezdőlap</h1>
 
-<div>
-    <button (click)="viewQuestions()">Kérdések törlése, kipróbálása</button>
+<i *ngIf="isAdmin == true">A szerepköröd: Admin</i>
+<i *ngIf="isAdmin == false">A szerepköröd: Felhasználó</i>
+
+<br>
+
+<div *ngIf="isAdmin == true">
+    <div>
+        <button (click)="viewQuestions()">Kérdések törlése, kipróbálása</button>
+    </div>
+    
+    <div>
+        <button (click)="addQuestion()">Új kérdés hozzáadása</button>
+    </div>
 </div>
 
-<div>
-    <button (click)="addQuestion()">Új kérdés hozzáadása</button>
-</div>
+<br>
 
-<div>
+<div *ngIf="isAdmin == false">
     <button (click)="solveQuiz()">Kvíz kitöltés</button>
 </div>
 
 <div>
     <button (click)="topScorers()">Top lista</button>
 </div>
+
+<br>
 
 <div>
     <button (click)="navigateBack()">Kijelentkezés</button>
