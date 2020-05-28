@@ -20,6 +20,18 @@ export class LoginService {
     return this.http.post('http://localhost:3000/server/user/login', {username: username, password:password}, httpOptions)
   }
 
+
+  logout(): Observable<any> {
+    const httpOptions = {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post('http://localhost:3000/server/user/logout',{}, httpOptions)
+
+  }
+
   setUserId():Observable<any> {
     const httpOptions = {
       withCredentials: true,
