@@ -100,18 +100,18 @@ function getRandomSubarray(arr, size) {
 exports.listSpecNumberOfQuestions=async (req, res, next)=>{
     try {
         const number=req.body.num;
-        let questionArray=await [];
         await questionModel.find({}, function(err, arr){
-            questionArray=arr;
-            console.log("arr.size: "+arr.size);
+            //questionArray=arr;
+            //console.log(arr);
+            if (number>arr.size){
+                return next(new Error('Too big size for random list.'));
+            }
+            const randomList=getRandomSubarray(arr, number);
+            res.status(200).json({
+                data: randomList
+            });
         });
-        if (number>questionArray.size){
-            return next(new Error('Too big size for random list.'));
-        }
-        const randomList=await getRandomSubarray(questionArray, number);
-        res.status(200).json({
-            data: randomList
-        });
+    
     } catch(error) {
         next(error);
     }
