@@ -18,6 +18,7 @@ export class QuizComponent implements OnInit {
   questionString : string;
   correctAnswer :string;
   shuffledAnswers = [];
+  actualScore : number;
 
   constructor(private router: Router, private quizService: QuizService) { }
 
@@ -35,7 +36,31 @@ export class QuizComponent implements OnInit {
       })
     }  
 
-    this.router.navigate(['/quiz']);
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/quiz']);
+    }); 
+  }
+
+  getScore() : number {
+    let score = 0;
+
+    this.quizService.getScore().subscribe(data => {
+      let rsp = data.data;
+      let kys = Object.keys(rsp);
+      
+      let userInfo = [];
+
+      for(let prop of kys) {
+        if(rsp[prop].username == localStorage.getItem('username')) {
+          score = rsp[prop].score;
+          break;
+        }
+      }
+    }, error => {
+      console.log(error);
+    })
+
+    return score;
   }
 
   shuffle(array: Array<any>) {
@@ -72,6 +97,7 @@ export class QuizComponent implements OnInit {
       this.shuffledAnswers = this.shuffle(this.questions[0].answers);
       console.log('shuffle:', this.shuffledAnswers);
 
+      this.actualScore = this.getScore();
     }, error => {
       console.log('error', error);     
     })

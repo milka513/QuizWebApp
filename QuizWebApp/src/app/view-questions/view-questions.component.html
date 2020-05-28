@@ -1,3 +1,17 @@
 <h1>Az adatbázis kérdései</h1>
 
+<div>
+    <p *ngFor="let question of questions">
+        {{question.title}}
+        <br>
+        Válaszok: {{question.answers[0]}} / {{question.answers[1]}} / {{question.answers[2]}} / {{question.answers[3]}}
+        <br>
+        Helyes válasz sorszáma: {{question.correctNum}}
+        <br>
+        <button (click)="deleteQuestion(question._id)">Törlés</button>
+        <br>
+        <button>Kipróbálás</button>
+    </p>
+</div>
+
 <button (click)="navigateBack()">Vissza</button>

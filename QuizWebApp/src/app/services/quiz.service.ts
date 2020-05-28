@@ -9,6 +9,39 @@ export class QuizService {
 
   constructor(private http: HttpClient) { }
 
+  deleteQuestion(id: string) : Observable<any> {
+    const httpOptions = {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    return this.http.delete('http://localhost:3000/server/question/deletequestion/' + id, httpOptions)
+  }
+
+  getScore() : Observable<any> {
+    const httpOptions = {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    return this.http.get('http://localhost:3000/server/user/listallscores', httpOptions)
+  }
+
+  getAllQuestions(): Observable<any> {
+    const httpOptions = {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    return this.http.get('http://localhost:3000/server/question/getquestions', httpOptions)
+  }
+
   getQuestions(): Observable<any> {
     const httpOptions = {
       withCredentials: true,
