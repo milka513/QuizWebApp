@@ -11,6 +11,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { TopScorersComponent } from './top-scorers/top-scorers.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { AddQuestionComponent } from './add-question/add-question.component';
+import { ViewQuestionsComponent } from './view-questions/view-questions.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { QuizComponent } from './quiz/quiz.component';
     DashboardComponent,
     RegistrationComponent,
     TopScorersComponent,
-    QuizComponent
+    QuizComponent,
+    AddQuestionComponent,
+    ViewQuestionsComponent
   ],
   imports: [
     BrowserModule,

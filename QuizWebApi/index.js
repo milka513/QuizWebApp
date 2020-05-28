@@ -78,6 +78,8 @@ var corsOptions = {
   },
   credentials: true
 }
+
+//app.use(cors());//! ideiglenesen csak
 app.use(cors(corsOptions));
 
 app.use(cookieParser());

@@ -20,6 +20,19 @@ export class QuizService {
     return this.http.post('http://localhost:3000/server/question/listspecnumquestions',{num:1}, httpOptions)
   }
 
+  addQuestion(title: string, answers: Array<string>, correctNum: number) : Observable<any> {
+    console.log('title:', title, 'answers:', answers, 'correctNum:', correctNum);
+
+    const httpOptions = {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    return this.http.post('http://localhost:3000/server/question/addquestion', {title: title, answers: answers, correctNum: correctNum}, httpOptions)
+  }
+
   updateScore(): Observable<any> {
     const httpOptions = {
       withCredentials: true,

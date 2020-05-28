@@ -14,6 +14,14 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  viewQuestions() {
+    this.Router.navigate(['/viewquestions']);
+  }
+
+  addQuestion() {
+    this.Router.navigate(['/addquestion']);  
+  }
+
   navigateBack() {
     this.loginService.logout();
     this.Router.navigate(['/login']);

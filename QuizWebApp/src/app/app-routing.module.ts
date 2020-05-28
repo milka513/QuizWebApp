@@ -7,6 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { TopScorersComponent } from './top-scorers/top-scorers.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { AddQuestionComponent } from './add-question/add-question.component';
+import { ViewQuestionsComponent } from './view-questions/view-questions.component';
 
 const routes: Routes = [
  {path: '', component: LoginComponent},
@@ -14,7 +16,9 @@ const routes: Routes = [
  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
  {path: 'registration', component: RegistrationComponent},
  {path: 'scores', component: TopScorersComponent},
- {path: 'quiz', component: QuizComponent}
+ {path: 'quiz', component: QuizComponent},
+ {path: 'addquestion', component: AddQuestionComponent},
+ {path: 'viewquestions', component: ViewQuestionsComponent}
 ];
 
 @NgModule({
