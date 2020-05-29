@@ -55,11 +55,12 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('role', data.data['role']);          
   
       }, error => {
-        console.log('error', error)
+        console.log('error', error);
       })
 
     }, error => {
-      console.log('error', error);     
+      console.log('error', error);  
+      this.router.navigate(['/login', {regMsg: 'Sikertelen bejelentkezés', color: 'red'}])   
     })
 
    

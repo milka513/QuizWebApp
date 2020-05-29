@@ -4,12 +4,12 @@
 
 <br>
 
-<i *ngIf="isAdmin == true">A szerepköröd: Admin</i>
-<i *ngIf="isAdmin == false">A szerepköröd: Felhasználó</i>
+<i *ngIf="readLocalStorageValue('role') == 'admin'">A szerepköröd: Admin</i>
+<i *ngIf="readLocalStorageValue('role') == 'user'">A szerepköröd: Felhasználó</i>
 
 <br>
 
-<div *ngIf="isAdmin == true">
+<div *ngIf="readLocalStorageValue('role') == 'admin'">
     <div>
         <button (click)="viewQuestions()">Kérdések törlése, kipróbálása</button>
     </div>
@@ -21,7 +21,7 @@
 
 <br>
 
-<div *ngIf="isAdmin == false">
+<div *ngIf="readLocalStorageValue('role') == 'user'">
     <button (click)="solveQuiz()">Kvíz kitöltés</button>
 </div>
 

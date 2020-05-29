@@ -8,8 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  isAdmin: boolean;
+  
   msg : string = '';
   color: string;
 
@@ -23,14 +22,11 @@ export class DashboardComponent implements OnInit {
       }
     })
 
-    localStorage.removeItem('solved');
+    localStorage.removeItem('solved');    
+  }
 
-    if(localStorage.getItem('role') == 'admin') {
-      this.isAdmin = true;
-    } else {
-      this.isAdmin = false;
-    }
-    
+  readLocalStorageValue(key: string): string {
+    return localStorage.getItem(key);
   }
 
   viewQuestions() {
