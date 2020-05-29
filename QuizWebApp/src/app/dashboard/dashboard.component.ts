@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,10 +10,21 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
 
   isAdmin: boolean;
+  msg : string = '';
+  color: string;
 
-  constructor(private Router: Router, private loginService: LoginService) { }
+  constructor(private route: ActivatedRoute, private Router: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if(params && params.msg && params.color) {
+        this.msg = params.msg;
+        this.color = params.color;
+      }
+    })
+
+    localStorage.removeItem('solved');
+
     if(localStorage.getItem('role') == 'admin') {
       this.isAdmin = true;
     } else {

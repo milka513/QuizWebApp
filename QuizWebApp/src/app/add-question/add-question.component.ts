@@ -16,12 +16,12 @@ export class AddQuestionComponent implements OnInit {
   correctNum : number;
 
   addQuestion() {
-    //parameterek elozetes ellenorzese
-
     this.quizService.addQuestion(this.title, this.answers, this.correctNum).subscribe(data => {
-      console.log('data', data);      
+      console.log('data', data);
+      this.router.navigate(['/dashboard', {msg: 'Sikeres kérdés felvétel', color: 'green'}]);      
     }, error => {
       console.log('error', error);     
+      this.router.navigate(['/dashboard', {msg: 'Sikertelen kérdés felvétel', color: 'red'}]);
     })
   }
 

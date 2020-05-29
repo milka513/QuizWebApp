@@ -21,9 +21,11 @@ export class ViewQuestionsComponent implements OnInit {
   
   deleteQuestion(id:string) {
     this.quizService.deleteQuestion(id).subscribe(data => {
-      console.log('data', data);      
+      console.log('data', data);
+      this.router.navigate(['/dashboard', {msg: 'Kérdés sikeresen törölve', color: 'green'}]);
     }, error => {
       console.log('error', error);
+      this.router.navigate(['/dashboard', {msg: 'A kérdést nem sikerült törölni', color: 'red'}]);
     })
   }
   

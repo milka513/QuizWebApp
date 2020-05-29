@@ -13,28 +13,26 @@ export class RegistrationComponent implements OnInit {
 
   username: string;
   password: string;
-  password2: string;
-
-
+  
   constructor(private route: ActivatedRoute, private router: Router, private regService: RegistrationService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
   }
 
-  registration() {
-    if(this.password == this.password2) {
+  registration() {    
       this.regService.registration(this.username, this.password).subscribe(data => {
-        console.log('data', data);                
+        console.log('data', data);          
+        this.msg = 'Sikeres regisztráció';      
+        this.router.navigate(['/login', {regMsg: this.msg, color: 'green'}]);  
       }, error => {
         console.log('error', error);     
-      })
-    }
+        this.msg = 'Sikertelen regisztráció';
+        this.router.navigate(['/login', {regMsg: this.msg, color: 'red'}]);  
+      })         
   }
 
   navigateBack() {
     this.router.navigate(['/login']);
   }
-
-
 
 }

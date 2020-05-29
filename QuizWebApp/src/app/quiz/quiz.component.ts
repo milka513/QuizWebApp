@@ -30,6 +30,8 @@ export class QuizComponent implements OnInit {
   ngOnInit(): void {
     this.getQuestions(this.quizService);
     this.actualScore = parseInt(localStorage.getItem('score'));
+
+    localStorage.setItem('solved', 'true');
   }
 
   //akkor ha a user jol valaszolt akkor a kerdesert kap 10 pontot
@@ -103,7 +105,7 @@ export class QuizComponent implements OnInit {
     }
 
     this.updateScore(points);
-    
+        
     this.router.navigate(['/result', {pts: points, corrects: this.correctAnswers}]);
   }
 

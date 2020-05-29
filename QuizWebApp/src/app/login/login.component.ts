@@ -12,11 +12,22 @@ export class LoginComponent implements OnInit {
   msg: string;
   username: string;
   password: string;
+  color: string;
 
   constructor(private route:ActivatedRoute, private router:Router, private loginService: LoginService) { }
 
   ngOnInit(): void {    
     localStorage.clear();
+
+    this.route.params.subscribe(params => {
+      console.log('params:',params);
+      
+      if(params && params.regMsg && params.color) {
+        this.msg = params.regMsg;
+        this.color = params.color;
+      }
+
+    })
     
     this.loginService.logout().subscribe(data=>{
       console.log(data);

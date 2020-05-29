@@ -1,5 +1,9 @@
 <h1>Kezdőlap</h1>
 
+<h3 *ngIf="msg != ''" style="color: {{color}}">{{msg}}</h3>
+
+<br>
+
 <i *ngIf="isAdmin == true">A szerepköröd: Admin</i>
 <i *ngIf="isAdmin == false">A szerepköröd: Felhasználó</i>
 

@@ -10,7 +10,7 @@ export class ResultComponentComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
-  pts: number;
+  pts: number = 0;
   cors = [];
 
   ngOnInit(): void {

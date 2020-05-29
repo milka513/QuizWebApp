@@ -1,11 +1,18 @@
 <h1>Ranglista</h1>
 
 <div>
-    <ul>
-        <li *ngFor="let item of board">            
-            {{item.username}}:{{item.score}}
-        </li>
-    </ul>
+    <table style="width: auto">
+         <tr>
+             <th>Felhasználónév</th>
+             <th>Pontszám</th>
+         </tr>
+         <tr *ngFor="let item of board">
+            <td>{{item.username}}</td>
+            <td>{{item.score}}</td>
+         </tr>
+    </table>
 </div>
+
+<br>
 
 <button (click)="navigateBack()">Vissza</button>
