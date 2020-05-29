@@ -1,0 +1,32 @@
+<h3>Írd be a kérdés paramétereit!</h3>
+
+<div>
+    <p>A kérdés:</p>
+    <input type="text" size="120" [(ngModel)]="title">
+</div>
+<div>
+    <p>A lehetséges válaszok:</p>
+    <input type="text" [(ngModel)]="answers[0]">
+    <input type="text" [(ngModel)]="answers[1]">
+    <input type="text" [(ngModel)]="answers[2]">
+    <input type="text" [(ngModel)]="answers[3]">
+</div>
+<div>
+    <p>A helyes válasz:</p>
+    <select size="1" [(ngModel)]="correctNum">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+    </select>
+</div>
+
+<br>
+<div>
+    <button (click)="addQuestion()">Hozzáadás</button>
+</div>
+<br>
+<div>
+    <button (click)="navigateBack()">Vissza</button>
+</div>
+

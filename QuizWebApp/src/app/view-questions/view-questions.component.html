@@ -1,0 +1,19 @@
+<h1>Az adatbázis kérdései</h1>
+
+<div *ngFor="let question of questions">
+        <i>{{question.title}}</i>        
+        <table style="width: 300px;">
+            <tr>
+                <td>{{question.answers[0]}}</td>
+                <td>{{question.answers[1]}}</td>
+                <td>{{question.answers[2]}}</td>
+                <td>{{question.answers[3]}}</td>
+            </tr>
+        </table>                
+        <p>A helyes válasz: <strong>{{question.answers[question.correctNum - 1]}}</strong></p>        
+        <button (click)="deleteQuestion(question._id)" margin="20px">Törlés</button>    
+        <br>
+        <br>
+</div>
+
+<button (click)="navigateBack()">Vissza</button>

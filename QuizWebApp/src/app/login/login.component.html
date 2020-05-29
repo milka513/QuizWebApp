@@ -1,0 +1,21 @@
+<h3 style="color: {{color}};">{{msg}}</h3>
+
+<b style="font-size: 16px;">Jelentkezz be!</b>
+
+<div>
+    <p>Felhasználónév:</p>
+    <input type="text" [(ngModel)]="username">
+</div>
+<div>
+    <p>Jelszó:</p>
+    <input type="password" [(ngModel)]="password">
+</div>
+<div>
+    <button (click)="clickLogin()">Bejelentkezés</button>
+</div>
+<br>
+<div>
+    <button (click)="clickRegistration()">Regisztráció</button>
+</div>
+
+
