@@ -52,8 +52,6 @@ require('./models/question.model');
 
 const user=mongoose.model('user');
 
-console.log(process.env.PORT);
-
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser:true,
     useUnifiedTopology: true
@@ -79,7 +77,6 @@ var corsOptions = {
   credentials: true
 }
 
-//app.use(cors());//! ideiglenesen csak
 app.use(cors(corsOptions));
 
 app.use(cookieParser());
@@ -114,7 +111,6 @@ passport.use('local', new localStrategy((username, password, done)=>{
 
 }));
 
-console.log(database_config.secret);
 app.use(expressSession({secret: database_config.secret}));
 app.use(passport.initialize());
 app.use(passport.session());
